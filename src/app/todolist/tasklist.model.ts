@@ -1,7 +1,7 @@
 export class TaskList
 {
     taskItem : string;
-    date : any;
+    date : Date;
 
     constructor()
     {

@@ -10,7 +10,8 @@ import { TaskList } from './tasklist.model';
 export class TodolistComponent implements OnInit {
 
   taskListObj : TaskList[] = [];
-  selecteddate :Date;
+  taskObj : TaskList;
+  taskEditObj : TaskList = new TaskList();
 
   constructor() { }
 
@@ -19,12 +20,29 @@ export class TodolistComponent implements OnInit {
 
   onSubmit(taskForm : NgForm)
   {
-    this.taskListObj.push(taskForm.value.taskId);
-    this.selecteddate = taskForm.value.date;
-    console.log(this.selecteddate);
+    this.taskObj = new TaskList();
+    this.taskObj.taskItem = taskForm.value.taskId;
+    this.taskObj.date = taskForm.value.date;
+    this.taskListObj.push(this.taskObj);
     console.log(taskForm.value);
     console.log(taskForm.value.taskId);
     console.log(taskForm.value.date);
+    taskForm.reset();
   }
+
+  onEdit(taskObj : TaskList)
+  {
+    let editIndex = this.taskListObj.indexOf(taskObj);
+    this.taskEditObj.taskItem = this.taskListObj[editIndex].taskItem;
+    this.taskEditObj.date = this.taskListObj[editIndex].date;
+  }
+
+   onDelete(taskObj : TaskList)
+   {
+     let deleteIndex = this.taskListObj.indexOf(taskObj);
+     this.taskListObj.splice(deleteIndex,1);
+     console.log(this.taskListObj.indexOf(taskObj));
+     console.log(taskObj);
+   }
 
 }

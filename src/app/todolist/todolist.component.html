@@ -8,17 +8,17 @@
       <form #taskForm='ngForm' (ngSubmit)=onSubmit(taskForm)>
         <div class="row">
           <div class="col-md-4">
-            <input type="text" id="taskId" name="taskId" class="form-control mr-sm-2" ngModel>
+            <input type="text" id="taskId" name="taskId" class="form-control mr-sm-2" [(ngModel)] = "taskEditObj.taskItem">
           </div>
           <div class="col-md-4">
             <mat-form-field>
-              <input id="date" name="date" matInput [matDatepicker]="myDatepicker" ngModel>
+              <input id="date" name="date" matInput [matDatepicker]="myDatepicker" [(ngModel)] = "taskEditObj.date">
               <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
-              <mat-datepicker #myDatepicker [startAt]="selecteddate"></mat-datepicker>
+              <mat-datepicker #myDatepicker></mat-datepicker>
             </mat-form-field>
           </div>
           <div class="col-md-4">
-            <button class="btn-primary">Submit</button>
+            <button mat-stroked-button color="primary">Submit</button>
         </div>
         </div>
       </form>
@@ -32,13 +32,19 @@
           
           <mat-card>
             <div class="row">
-              <div class="col-md-6">{{task}}</div>
-              <div class="col-md-6">
+              <div class="col-md-5">{{task.taskItem}}</div>
+              <div class="col-md-5">
                 <mat-form-field>
-                  <input matInput [matDatepicker]="myDatepicker">
+                  <input matInput [matDatepicker]="myDatepicker" [(ngModel)] = "task.date">
                   <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
                   <mat-datepicker #myDatepicker></mat-datepicker>
                 </mat-form-field>
+              </div>
+              <div class="col-md-1">
+                <button mat-button color="primary" (click)=onEdit(task)>Edit</button>
+              </div>
+              <div class="col-md-1">
+                <button mat-button color="primary" (click)=onDelete(task)>Delete</button>
               </div>
             </div>            
           </mat-card>
