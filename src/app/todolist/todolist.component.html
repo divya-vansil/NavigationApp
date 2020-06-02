@@ -1,0 +1,51 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-3">
+      <label>Enter task : </label>
+    </div>
+    <div class="col-md-9">
+      <form #taskForm='ngForm' (ngSubmit)=onSubmit(taskForm)>
+        <div class="row">
+          <div class="col-md-4">
+            <input type="text" id="taskId" name="taskId" class="form-control mr-sm-2" ngModel>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field>
+              <input id="date" name="date" matInput [matDatepicker]="myDatepicker" ngModel>
+              <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+              <mat-datepicker #myDatepicker [startAt]="selecteddate"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <button class="btn-primary">Submit</button>
+        </div>
+        </div>
+      </form>
+    </div>    
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul id="taskList">
+        <li *ngFor="let task of taskListObj; let i = index">
+          
+          <mat-card>
+            <div class="row">
+              <div class="col-md-6">{{task}}</div>
+              <div class="col-md-6">
+                <mat-form-field>
+                  <input matInput [matDatepicker]="myDatepicker">
+                  <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+                  <mat-datepicker #myDatepicker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>            
+          </mat-card>
+
+        </li>
+      </ul>     
+    </div>
+  </div>
+
+  </div>
