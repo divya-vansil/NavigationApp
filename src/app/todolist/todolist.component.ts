@@ -12,6 +12,9 @@ export class TodolistComponent implements OnInit {
   taskListObj : TaskList[] = [];
   taskObj : TaskList;
   taskEditObj : TaskList = new TaskList();
+  editIndex : number;
+  isEdit : boolean;
+  btnText :string;
 
   constructor() { }
 
@@ -20,21 +23,33 @@ export class TodolistComponent implements OnInit {
 
   onSubmit(taskForm : NgForm)
   {
-    this.taskObj = new TaskList();
-    this.taskObj.taskItem = taskForm.value.taskId;
-    this.taskObj.date = taskForm.value.date;
-    this.taskListObj.push(this.taskObj);
-    console.log(taskForm.value);
-    console.log(taskForm.value.taskId);
-    console.log(taskForm.value.date);
-    taskForm.reset();
+    if(!this.isEdit)
+    {
+      this.taskObj = new TaskList();
+      this.taskObj.taskItem = taskForm.value.taskId;
+      this.taskObj.date = taskForm.value.date;
+      this.taskListObj.push(this.taskObj);
+      console.log(taskForm.value);
+      console.log(taskForm.value.taskId);
+      console.log(taskForm.value.date);
+      taskForm.reset();
+    }
+    else
+    {
+      this.taskObj = new TaskList();
+      this.taskObj.taskItem = taskForm.value.taskId;
+      this.taskObj.date = taskForm.value.date;
+      this.taskListObj[this.editIndex] = this.taskObj;
+      taskForm.reset();
+    }
   }
 
   onEdit(taskObj : TaskList)
   {
-    let editIndex = this.taskListObj.indexOf(taskObj);
-    this.taskEditObj.taskItem = this.taskListObj[editIndex].taskItem;
-    this.taskEditObj.date = this.taskListObj[editIndex].date;
+    this.editIndex = this.taskListObj.indexOf(taskObj);
+    this.taskEditObj.taskItem = this.taskListObj[this.editIndex].taskItem;
+    this.taskEditObj.date = this.taskListObj[this.editIndex].date;
+    this.isEdit = true;
   }
 
    onDelete(taskObj : TaskList)
@@ -44,5 +59,4 @@ export class TodolistComponent implements OnInit {
      console.log(this.taskListObj.indexOf(taskObj));
      console.log(taskObj);
    }
-
 }

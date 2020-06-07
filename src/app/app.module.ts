@@ -14,6 +14,7 @@ import { MatNativeDateModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { MatCardModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 const routeList : Routes = [
   {path : 'todolist', component : TodolistComponent}
@@ -36,7 +37,8 @@ const routeList : Routes = [
     MatNativeDateModule,
     MatInputModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
