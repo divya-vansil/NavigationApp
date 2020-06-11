@@ -21,7 +21,7 @@
             <button mat-stroked-button color="primary" type="submit">{{isEdit ? "Update" : "Submit"}}</button>
         </div>
       </div>
-    </form>
+    </form> 
     </div>    
   </div>
 
@@ -46,13 +46,44 @@
                 <button mat-button color="primary" (click)=onEdit(task)>Edit</button>
               </div>
               <div class="col-md-1">
-                <button mat-button color="primary" (click)=onDelete(task)><i class="fa fa-times" aria-hidden="true"></i></button>
+                <button mat-button color="primary" (click)=onDelete(task)><mat-icon>close</mat-icon></button>
               </div>
             </div>            
           </mat-card>
 
         </li>
       </ul>     
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-hover table-bordered">      
+        <thead>
+          <tr>
+            <th>To-Do Item</th>
+            <th>End Date</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <ul id="taskList">
+              <li *ngFor="let task of taskListObj; let i = index">
+                <td>{{task.taskItem}}</td>
+                <td>
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="myDatepicker" [(ngModel)] = "task.date">
+                    <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #myDatepicker></mat-datepicker>
+                  </mat-form-field>
+                </td>
+              </li>
+            </ul>
+          </tr>
+        </tbody>
+        
+      </table>
     </div>
   </div>
 

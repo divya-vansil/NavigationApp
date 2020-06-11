@@ -15,16 +15,20 @@ import { MatInputModule } from '@angular/material';
 import { MatCardModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { MatIconModule } from '@angular/material';
+import { EmployeeregComponent } from './employeereg/employeereg.component';
 
 const routeList : Routes = [
-  {path : 'todolist', component : TodolistComponent}
+  {path : 'todolist', component : TodolistComponent},
+  {path : 'employeereg', component : EmployeeregComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    TodolistComponent
+    TodolistComponent,
+    EmployeeregComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,8 @@ const routeList : Routes = [
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
